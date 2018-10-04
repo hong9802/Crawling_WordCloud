@@ -32,7 +32,7 @@ def listparshing(url):
     except IndexError as e:
         if(i == 0):
             state = 1
-        print("INDEX ERROR")
+        print(str(j+1) + " 번째 페이지 끝")
 
 def contentparshing(url):
     r = requests.get(url)
