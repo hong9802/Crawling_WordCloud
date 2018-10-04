@@ -28,7 +28,7 @@ def listparshing(url):
             i+=1
             f.write(content)
             f.close()
-            time.sleep(10)
+            time.sleep(300)
     except IndexError as e:
         if(i == 0):
             state = 1
