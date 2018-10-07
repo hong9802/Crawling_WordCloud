@@ -6,8 +6,7 @@ from collections import Counter
 import time
 import pytagcloud
 
-j = 0
-state = 0
+j = 1
 def listparshing(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, "html.parser")
@@ -28,11 +27,13 @@ def listparshing(url):
             i+=1
             f.write(content)
             f.close()
-            time.sleep(300)
+            #time.sleep(10)
     except IndexError as e:
+        print("INDEX ERROR")
         if(i == 0):
-            state = 1
-        print(str(j+1) + " 번째 페이지 끝")
+            return 0
+        else:
+            pass
 
 def contentparshing(url):
     r = requests.get(url)
@@ -68,8 +69,8 @@ def imagemake():
 
 while True:
     url = "http://hansung.ac.kr/web/www/cmty_01_01?p_p_id=EXT_BBS&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=1&p_p_col_count=3&_EXT_BBS_struts_action=%2Fext%2Fbbs%2Fview&_EXT_BBS_sCategory=&_EXT_BBS_sKeyType=&_EXT_BBS_sKeyword=&_EXT_BBS_curPage=" + str(j)
-    listparshing(url)
-    if(state == 1):
+    check = listparshing(url)
+    if(check == 0):
         break
     else:
         j+=1
